@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+
+# Banco de dados
+sqlalchemy
+psycopg[binary]
+
+# Configurações
+pydantic
