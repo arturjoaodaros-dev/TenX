@@ -1,4 +1,4 @@
-from connector import Query
+from App.Database.connector import Query
 
 def criar_materia(nome):
     return Query(
@@ -7,19 +7,19 @@ INSERT INTO materias(materia_nome) VALUES(%s)
         """, (nome, ))
 
 def listar_materias(nome: str = ""):
-    materias = []
-
     if nome:
-        for materia in Query(
-            "SELECT * FROM materias WHERE materia_nome = %s",
-            (nome,)
-        )[0]:
-            materias.append(materia[1])
+        return [d[1] for d in Query( "SELECT * FROM materias WHERE materia_nome = %s",(nome,),"data")]
     else:
-        for materia in Query("SELECT * FROM materias")[0]:
-            materias.append(materia[1])
+        return [d[1] for d in Query("SELECT * FROM materias", return_info="data")]
 
-    return materias
+def obter_id_por_materia(nome_materia:str):
+    try:
+        return [d[0] for d in Query( "SELECT * FROM materias WHERE materia_nome = %s",(nome_materia, ),"data")]
+    except:
+        return "Not found"
 
-
-print(listar_materias())
+def obter_materia_por_id(id_materia):
+    for d in Query("SELECT * FROM materias", return_info="data"):
+        if d[0] == id_materia:
+            return d[1]
+        break

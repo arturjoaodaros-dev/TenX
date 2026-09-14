@@ -1,4 +1,4 @@
-from connector import Query
+from App.Database.connector import Query
 
 def criar_bobica(nome, preco):
     return Query(
@@ -7,16 +7,19 @@ INSERT INTO bobicas(bobica_nome, preco_medio) VALUES(%s, %s)
         """, (nome, preco))
 
 def listar_bobicas(nome: str = ""):
-    bobicas = []
-
     if nome:
-        for bobica in Query(
-            "SELECT * FROM bobicas WHERE bobica_nome = %s",
-            (nome,)
-        )[0]:
-            bobicas.append(bobica[1])
+        return [d[1] for d in Query( "SELECT * FROM bobicas WHERE bobica_nome = %s",(nome,),"data")]
     else:
-        for bobica in Query("SELECT * FROM bobicas")[0]:
-            bobicas.append(bobica[1])
+        return [d[1] for d in Query("SELECT * FROM bobicas", return_info="data")]
 
-    return bobicas
+def obter_id_por_bobica(nome_bobica:str):
+    try:
+        return [d[0] for d in Query( "SELECT * FROM bobicas WHERE bobica_nome = %s",(nome_bobica, ),"data")]
+    except:
+        return "Not found"
+
+def obter_bobica_por_id(id_bobica):
+    for d in Query("SELECT * FROM bobica", return_info="data"):
+        if d[0] == id_bobica:
+            return d[1]
+        break

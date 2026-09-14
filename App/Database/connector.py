@@ -12,7 +12,7 @@ conn = psycopg.connect(
     user=os.getenv("DB_USER"),
     password=os.getenv("DB_PASSWORD")
 )
-def Query(query, params=None) -> list:
+def Query(query, params=None, return_info:str="") -> list:
     try:
         with conn.cursor() as cursor:
             cursor.execute(query, params)
@@ -23,10 +23,18 @@ def Query(query, params=None) -> list:
 
                 conn.commit()
 
-                return [
-                    dados, 
-                    colunas, 
-                    pd.DataFrame(dados, columns=colunas)]
+                if return_info:
+                    if return_info.lower() == "table":
+                        return [pd.DataFrame(dados, columns=colunas)]
+                    elif return_info.lower() == "columns":
+                        return colunas
+                    elif return_info.lower() == "data":
+                        return dados
+                else:
+                    return [
+                        dados, 
+                        colunas, 
+                        pd.DataFrame(dados, columns=colunas)]
 
             resultado = cursor.statusmessage
 
@@ -34,7 +42,7 @@ def Query(query, params=None) -> list:
     except Exception as e:
         print("Algo de de errado, nada foi alterado. ERR:", e)
         conn.rollback()
-        return ["Algo de de errado, nada foi alterado. ERR:", e]
+        raise Exception(f"Algo de de errado, nada foi alterado. ERR:{e}")
         
 
     finally:

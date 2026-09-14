@@ -23,3 +23,19 @@ def listar_bobicas_por_nome(nome: str):
     return {
         "nomes" : bdb.listar_bobicas(nome)
     }
+
+@router.post('/')
+def criar_bobica(bobica:bsc.Bobica):
+    try:
+        bdb.criar_bobica(bobica.nome, bobica.preco_medio)
+        return{
+            "status": "criado com sucesso",
+            "nome": bobica.nome,
+            "preco_medio": bobica.preco_medio
+        }
+    except:
+        return{
+            "status": "erro na criacao",
+            "nome": bobica.nome,
+            "preco_medio": bobica.preco_medio
+        }
