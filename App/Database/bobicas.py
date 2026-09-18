@@ -1,5 +1,5 @@
 from App.Database.connector import Query
-
+from App.schemas import bobicas as bsc
 def criar_bobica(nome, preco):
     return Query(
         """
@@ -24,7 +24,7 @@ def obter_bobica_por_id(id_bobica):
     except:
         return "Not found"
 
-def atualizar_bobica_por_id(id_bobica, **valores_mudados):
+def atualizar_bobica_por_id_valores(id_bobica, **valores_mudados):
     try:
         for k, v in valores_mudados.items():
             Query(
@@ -37,7 +37,7 @@ def atualizar_bobica_por_id(id_bobica, **valores_mudados):
     except Exception as e:
         raise Exception("Algo deu de errado na operação, ERR: ", e)
 
-def atualizar_bobica_por_nome(nome_bobica, **valores_mudados):
+def atualizar_bobica_por_nome_valores(nome_bobica, **valores_mudados):
     try:
         for k, v in valores_mudados.items():
             Query(
@@ -47,5 +47,39 @@ def atualizar_bobica_por_nome(nome_bobica, **valores_mudados):
         WHERE bobica_nome = %s 
                 """, (k, v, nome_bobica)
             )
+    except Exception as e:
+        raise Exception("Algo deu de errado na operação, ERR: ", e)
+
+def atualizar_bobica_por_id_completa(id_bobica, nova_bobica:bsc.Bobica):
+    try:
+        Query(
+            """
+DELETE FROM bobicas
+WHERE bobica_id = %s 
+            """, (id_bobica, )
+            )
+        
+        Query(
+            """
+        INSERT INTO bobicas(bobica_nome, preco_medio) VALUES (%s, %s)
+            """, (nova_bobica.nome, nova_bobica.preco_medio)
+            )
+    except Exception as e:
+        raise Exception("Algo deu de errado na operação, ERR: ", e)
+
+def atualizar_bobica_por_nome_completa(nome_bobica, nova_bobica:bsc.Bobica):
+    try:
+        Query(
+            """
+    DELETE FROM bobicas
+    WHERE bobica_nome = %s 
+            """, (nome_bobica, )
+        )
+
+        Query(
+            """
+INSERT INTO bobicas(bobica_nome, preco_medio) VALUES (%s, %s)
+            """, (nova_bobica.nome, nova_bobica.preco_medio)
+        )
     except Exception as e:
         raise Exception("Algo deu de errado na operação, ERR: ", e)

@@ -1,5 +1,5 @@
 from App.Database.connector import Query
-
+from App.schemas import materias as msc
 def criar_materia(nome):
     return Query(
         """
@@ -47,5 +47,65 @@ def atualizar_materia_por_nome(nome_materia, **valores_mudados):
         WHERE materia_nome = %s 
                 """, (k, v, nome_materia)
             )
+    except Exception as e:
+        raise Exception("Algo deu de errado na operação, ERR: ", e)
+
+def atualizar_materia_por_id_valores(materia_id, **valores_mudados):
+    try:
+        for k, v in valores_mudados.items():
+            Query(
+                """
+        UPDATE materias
+        SET %s = %s
+        WHERE materia_id = %s 
+                """, (k, v, materia_id)
+            )
+    except Exception as e:
+        raise Exception("Algo deu de errado na operação, ERR: ", e)
+
+def atualizar_materia_por_nome_valores(materia_nome, **valores_mudados):
+    try:
+        for k, v in valores_mudados.items():
+            Query(
+                """
+        UPDATE materias
+        SET %s = %s
+        WHERE materia_nome = %s 
+                """, (k, v, materia_nome)
+            )
+    except Exception as e:
+        raise Exception("Algo deu de errado na operação, ERR: ", e)
+
+def atualizar_materia_por_id_completa(materia_id, nova_materia:msc.Materia):
+    try:
+        Query(
+            """
+DELETE FROM materias
+WHERE materia_id = %s 
+            """, (materia_id, )
+            )
+        
+        Query(
+            """
+INSERT INTO materias(materia_nome) VALUES (%s)
+            """, (nova_materia.nome,)
+        )
+    except Exception as e:
+        raise Exception("Algo deu de errado na operação, ERR: ", e)
+
+def atualizar_materia_por_nome_completa(materia_nome, nova_materia:msc.Materia):
+    try:
+        Query(
+            """
+    DELETE FROM materias
+    WHERE bobica_nome = %s 
+            """, (materia_nome, )
+        )
+
+        Query(
+            """
+INSERT INTO bobicas(materia_nome) VALUES (%s)
+            """, (nova_materia.nome,)
+        )
     except Exception as e:
         raise Exception("Algo deu de errado na operação, ERR: ", e)

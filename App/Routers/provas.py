@@ -35,3 +35,8 @@ def criar_prova(prova:psc.Prova):
             "nome_materia": prova.nome_materia,
             "nome_bobica": prova.nome_bobica
         }
+
+@router.put('/')
+def atualizar_prova(nova_prova, nome_bobica:str="", id_prova:int=0, nome_materia:str=""):
+    if id_prova:
+        return pdb.atualizar_prova_por_id(id_prova, nova_prova)
