@@ -19,5 +19,44 @@ def listar_provas(nome:str=""):
         return {nome : provas[nome]}
     else:
         return provas
+
+def atualizar_prova_por_id(id_prova, **valores_mudados):
+    try:
+        for k, v in valores_mudados.items():
+            Query(
+                """
+        UPDATE provas
+        SET %s = %s
+        WHERE prova_id = %s 
+                """, (k, v, id_prova)
+            )
+    except Exception as e:
+        raise Exception("Algo deu de errado na operação, ERR: ", e)
+
+def atualizar_prova_por_materia(nome_materia, **valores_mudados):
+    try:
+        for k, v in valores_mudados.items():
+            Query(
+                """
+        UPDATE provas
+        SET %s = %s
+        WHERE materia_id = %s 
+                """, (k, v, mdb.obter_id_por_materia(nome_materia))
+            )
+    except Exception as e:
+        raise Exception("Algo deu de errado na operação, ERR: ", e)
+    
+def atualizar_prova_por_bobica(nome_bobica, **valores_mudados):
+    try:
+        for k, v in valores_mudados.items():
+            Query(
+                """
+        UPDATE provas
+        SET %s = %s
+        WHERE bobica_id = %s 
+                """, (k, v, bdb.obter_id_por_bobica(nome_bobica))
+            )
+    except Exception as e:
+        raise Exception("Algo deu de errado na operação, ERR: ", e)
 if __name__ == "__main__":
     print(listar_provas("ciencias"))

@@ -19,7 +19,33 @@ def obter_id_por_bobica(nome_bobica:str):
         return "Not found"
 
 def obter_bobica_por_id(id_bobica):
-    for d in Query("SELECT * FROM bobica", return_info="data"):
-        if d[0] == id_bobica:
-            return d[1]
-        break
+    try:
+        return [d[1] for d in Query( "SELECT * FROM bobicas WHERE bobica_id = %s",(id_bobica, ),"data")]
+    except:
+        return "Not found"
+
+def atualizar_bobica_por_id(id_bobica, **valores_mudados):
+    try:
+        for k, v in valores_mudados.items():
+            Query(
+                """
+        UPDATE bobicas
+        SET %s = %s
+        WHERE bobica_id = %s 
+                """, (k, v, id_bobica)
+            )
+    except Exception as e:
+        raise Exception("Algo deu de errado na operação, ERR: ", e)
+
+def atualizar_bobica_por_nome(nome_bobica, **valores_mudados):
+    try:
+        for k, v in valores_mudados.items():
+            Query(
+                """
+        UPDATE bobicas
+        SET %s = %s
+        WHERE bobica_nome = %s 
+                """, (k, v, nome_bobica)
+            )
+    except Exception as e:
+        raise Exception("Algo deu de errado na operação, ERR: ", e)

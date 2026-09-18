@@ -23,3 +23,29 @@ def obter_materia_por_id(id_materia):
         if d[0] == id_materia:
             return d[1]
         break
+
+def atualizar_materia_por_id(id_materia, **valores_mudados):
+    try:
+        for k, v in valores_mudados.items():
+            Query(
+                """
+        UPDATE materias
+        SET %s = %s
+        WHERE materia_id = %s 
+                """, (k, v, id_materia)
+            )
+    except Exception as e:
+        raise Exception("Algo deu de errado na operação, ERR: ", e)
+
+def atualizar_materia_por_nome(nome_materia, **valores_mudados):
+    try:
+        for k, v in valores_mudados.items():
+            Query(
+                """
+        UPDATE materias
+        SET %s = %s
+        WHERE materia_nome = %s 
+                """, (k, v, nome_materia)
+            )
+    except Exception as e:
+        raise Exception("Algo deu de errado na operação, ERR: ", e)
