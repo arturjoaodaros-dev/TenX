@@ -37,10 +37,23 @@ def criar_prova(prova:psc.Prova) -> dict:
         }
 
 @router.put('/')
-def atualizar_prova(nova_prova:psc.Prova, nome_bobica:str="", id_prova:int=0, nome_materia:str=""):
+def atualizar_prova(nova_prova:psc.Prova, nome_bobica:str="", id_prova:int=0, nome_materia:str="") -> dict:
     if id_prova:
-        return pdb.atualizar_prova_por_id_completa(id_prova, nova_prova)
+        return {
+            "status": pdb.atualizar_prova_por_id_completa(id_prova, nova_prova),
+            "id_prova": id_prova
+        }
     elif nome_materia:
-        return pdb.atualizar_prova_por_materia_completa(nome_materia, nova_prova)
+        return {
+            "status": pdb.atualizar_prova_por_materia_completa(nome_materia, nova_prova),
+            "nome_materia": nome_materia
+        } 
     elif nome_bobica:
-        return pdb.atualizar_prova_por_bobica_completa(nome_bobica, nova_prova)
+        return {
+            "status": pdb.atualizar_prova_por_bobica_completa(nome_bobica, nova_prova),
+            "nome_bobica": nome_bobica
+        }
+    else:
+        return{
+            "error":"you must inform id_prova, nome_materia or nome_bobica"
+        }

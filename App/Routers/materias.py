@@ -7,29 +7,28 @@ router = APIRouter(
 )
 
 @router.get("/", response_model=msc.MateriaResponse)
-def listar_todas_materias():
+def listar_todas_materias() -> dict:
     return {
         "nomes" : mdb.listar_materias()
     }
 
 @router.get("/", response_model=msc.MateriaResponse)
-def listar_materias_por_query(nome: str):
+def listar_materias_por_query(nome: str) -> dict:
     return {
         "nomes" : mdb.listar_materias(nome)
     }
 
 @router.get("/{nome}", response_model=msc.MateriaResponse)
-def listar_materias_por_nome(nome: str):
+def listar_materias_por_nome(nome: str) -> dict:
     return {
         "nomes" : mdb.listar_materias(nome)
     }
 
 @router.post('/')
-def criar_materia(materia:msc.Materia):
+def criar_materia(materia:msc.Materia) -> dict:
     try:
-        mdb.criar_materia(materia.nome)
         return{
-            "status": "criado com sucesso",
+            "status": mdb.criar_materia(materia.nome),
             "nome": materia.nome,
         }
     except:
@@ -39,8 +38,14 @@ def criar_materia(materia:msc.Materia):
         }
 
 @router.put('/')
-def atualizar_bobica(nova_materia:msc.Materia, nome_materia:str="", id_materia:int=0):
+def atualizar_bobica(nova_materia:msc.Materia, nome_materia:str="", id_materia:int=0) -> dict:
     if not id_materia:
-        return mdb.atualizar_materia_por_nome_completa(nome_materia, nova_materia)
+        return {
+            "status": mdb.atualizar_materia_por_nome_completa(nome_materia, nova_materia),
+            "nome_materia": nome_materia
+        }
     else:
-        return mdb.atualizar_materia_por_nome_completa(id_materia, nova_materia)
+        return {
+            "status": mdb.atualizar_materia_por_nome_completa(id_materia, nova_materia),
+            "id_materia": id_materia
+        }
