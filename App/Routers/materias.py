@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Query
 from App.Database import materias as mdb
 from App.schemas import materias as msc
 router = APIRouter(
@@ -6,19 +6,13 @@ router = APIRouter(
     tags=["materias"]
 )
 
-@router.get("/", response_model=msc.MateriaResponse)
-def listar_todas_materias() -> dict:
+@router.get("/")
+def listar_todas_materias(nome_materia:str=Query("", min_length=3)) -> dict:
     return {
-        "nomes" : mdb.listar_materias()
+        "nomes" : mdb.listar_materias(nome_materia)
     }
 
-@router.get("/", response_model=msc.MateriaResponse)
-def listar_materias_por_query(nome: str) -> dict:
-    return {
-        "nomes" : mdb.listar_materias(nome)
-    }
-
-@router.get("/{nome}", response_model=msc.MateriaResponse)
+@router.get("/{nome}")
 def listar_materias_por_nome(nome: str) -> dict:
     return {
         "nomes" : mdb.listar_materias(nome)

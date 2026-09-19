@@ -17,17 +17,29 @@ def criar_prova(nome_materia, nome_bobica) -> str:
         raise Exception("Algo deu de errado na operação, ERR: ", e)
 
 # funções GET
-def listar_provas(nome:str="") -> dict:
+def listar_provas(nome:str="") -> list:
     provas = {}
+    lista_provas = []
     for d in Query("SELECT * FROM provas", return_info="data"):
         try:
             provas[mdb.obter_materia_por_id(d[1])] += 1
         except KeyError:
             provas[mdb.obter_materia_por_id(d[1])] = 1
-    if nome:
-        return {nome : provas[nome]}
-    else:
-        return provas
+    
+    for k, v in provas.items():
+        if not nome:
+            lista_provas.append((k, v))
+        else:
+            if k == nome:
+                lista_provas.append((k, v))
+                break
+
+    return lista_provas
+
+def listar_provas_por_id(id_prova):
+    data = Query("SELECT materia_id, bobica_id FROM provas WHERE prova_id = %s",(id_prova, ), "data")[0]
+    processed_data = [mdb.obter_materia_por_id(data[0]), bdb.obter_bobica_por_id(data[1])]
+    return processed_data
 
 # funções PATCH
 def atualizar_prova_por_id_valores(id_prova, **valores_mudados) -> str:
@@ -126,3 +138,5 @@ INSERT INTO provas(materia_id, bobica_id) VALUES (%s, %s)
         return "prova atualizada com sucesso"
     except Exception as e:
         raise Exception("Algo deu de errado na operação, ERR: ", e)
+
+print(Query("SELECT materia_id, bobica_id FROM provas WHERE prova_id = %s",(1, ), "data"))

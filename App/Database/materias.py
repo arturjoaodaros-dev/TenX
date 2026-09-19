@@ -25,17 +25,21 @@ def listar_materias(nome: str = "") -> list:
 # funções para auxiliar no código
 def obter_id_por_materia(nome_materia:str):
     try:
+        m = ""
         for d in Query( "SELECT * FROM materias WHERE materia_nome = %s",(nome_materia, ),"data"):
             if d[1] == nome_materia:
-                return d[0]
+                m = d[0]
+        return str(m)
     except:
         return "Not found"
 
 def obter_materia_por_id(id_materia):
+    m = ""
     for d in Query("SELECT * FROM materias", return_info="data"):
         if d[0] == id_materia:
-            return d[1]
-        break
+            m = d[1]
+    return str(m)
+
 
 # funções PATCH
 def atualizar_materia_por_id_valores(materia_id, **valores_mudados) -> str:
@@ -45,7 +49,7 @@ def atualizar_materia_por_id_valores(materia_id, **valores_mudados) -> str:
                 """
         UPDATE materias
         SET %s = %s
-        WHERE materia_id = %s 
+        WHERE materia_id = %s; 
                 """, (k, v, materia_id)
             )
         return "Valores atualizados com sucesso"
@@ -59,7 +63,7 @@ def atualizar_materia_por_nome_valores(materia_nome, **valores_mudados) -> str:
                 """
         UPDATE materias
         SET %s = %s
-        WHERE materia_nome = %s 
+        WHERE materia_nome = %s;
                 """, (k, v, materia_nome)
             )
         return "Valores atualizados com sucesso"

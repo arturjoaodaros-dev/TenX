@@ -5,20 +5,13 @@ router = APIRouter(
     prefix="/bobicas",
     tags=["bobicas"]
 )
-
-@router.get("/", response_model=bsc.BobicaResponse)
-def listar_todas_bobicas() -> dict:
-    return {
-        "bobicas" : bdb.listar_bobicas()
-    }
-
-@router.get("/", response_model=bsc.BobicaResponse)
-def listar_bobicas_por_query(nome: str) -> dict:
+@router.get("/")
+def listar_bobicas(nome: str="") -> dict:
     return {
         "nomes" : bdb.listar_bobicas(nome)
     }
 
-@router.get("/{nome}", response_model=bsc.BobicaResponse)
+@router.get("/{nome}")
 def listar_bobicas_por_nome(nome: str) -> dict:
     return {
         "nomes" : bdb.listar_bobicas(nome)
