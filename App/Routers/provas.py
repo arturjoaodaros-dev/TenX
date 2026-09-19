@@ -20,7 +20,7 @@ def listar_provas_por_nome(nome_materia: str):
     return pdb.listar_provas(nome_materia)
 
 @router.post("/")
-def criar_prova(prova:psc.Prova):
+def criar_prova(prova:psc.Prova) -> dict:
     
     try:
         pdb.criar_prova(prova.nome_materia, prova.nome_bobica)
@@ -37,6 +37,10 @@ def criar_prova(prova:psc.Prova):
         }
 
 @router.put('/')
-def atualizar_prova(nova_prova, nome_bobica:str="", id_prova:int=0, nome_materia:str=""):
+def atualizar_prova(nova_prova:psc.Prova, nome_bobica:str="", id_prova:int=0, nome_materia:str=""):
     if id_prova:
-        return pdb.atualizar_prova_por_id(id_prova, nova_prova)
+        return pdb.atualizar_prova_por_id_completa(id_prova, nova_prova)
+    elif nome_materia:
+        return pdb.atualizar_prova_por_materia_completa(nome_materia, nova_prova)
+    elif nome_bobica:
+        return pdb.atualizar_prova_por_bobica_completa(nome_bobica, nova_prova)

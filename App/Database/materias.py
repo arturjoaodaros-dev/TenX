@@ -1,20 +1,33 @@
+# COMUNICAÇÃO COM O DATABASE DAS MATERIAS
+# NOME DOS IMPORTS DEVE SER mdb
+# imports
 from App.Database.connector import Query
 from App.schemas import materias as msc
-def criar_materia(nome):
-    return Query(
-        """
-INSERT INTO materias(materia_nome) VALUES(%s)
-        """, (nome, ))
 
-def listar_materias(nome: str = ""):
+# funções POST 
+def criar_materia(nome_materia) -> str:
+    try:
+        Query(
+            """
+    INSERT INTO materias(materia_nome) VALUES(%s)
+            """, (nome_materia, ))
+        return "materia criada com sucesso"
+    except Exception as e:
+        raise Exception("Algo deu de errado na operação, ERR: ", e)
+
+# funções GET
+def listar_materias(nome: str = "") -> list:
     if nome:
         return [d[1] for d in Query( "SELECT * FROM materias WHERE materia_nome = %s",(nome,),"data")]
     else:
         return [d[1] for d in Query("SELECT * FROM materias", return_info="data")]
 
+# funções para auxiliar no código
 def obter_id_por_materia(nome_materia:str):
     try:
-        return [d[0] for d in Query( "SELECT * FROM materias WHERE materia_nome = %s",(nome_materia, ),"data")]
+        for d in Query( "SELECT * FROM materias WHERE materia_nome = %s",(nome_materia, ),"data"):
+            if d[1] == nome_materia:
+                return d[0]
     except:
         return "Not found"
 
@@ -24,33 +37,8 @@ def obter_materia_por_id(id_materia):
             return d[1]
         break
 
-def atualizar_materia_por_id(id_materia, **valores_mudados):
-    try:
-        for k, v in valores_mudados.items():
-            Query(
-                """
-        UPDATE materias
-        SET %s = %s
-        WHERE materia_id = %s 
-                """, (k, v, id_materia)
-            )
-    except Exception as e:
-        raise Exception("Algo deu de errado na operação, ERR: ", e)
-
-def atualizar_materia_por_nome(nome_materia, **valores_mudados):
-    try:
-        for k, v in valores_mudados.items():
-            Query(
-                """
-        UPDATE materias
-        SET %s = %s
-        WHERE materia_nome = %s 
-                """, (k, v, nome_materia)
-            )
-    except Exception as e:
-        raise Exception("Algo deu de errado na operação, ERR: ", e)
-
-def atualizar_materia_por_id_valores(materia_id, **valores_mudados):
+# funções PATCH
+def atualizar_materia_por_id_valores(materia_id, **valores_mudados) -> str:
     try:
         for k, v in valores_mudados.items():
             Query(
@@ -60,10 +48,11 @@ def atualizar_materia_por_id_valores(materia_id, **valores_mudados):
         WHERE materia_id = %s 
                 """, (k, v, materia_id)
             )
+        return "Valores atualizados com sucesso"
     except Exception as e:
         raise Exception("Algo deu de errado na operação, ERR: ", e)
 
-def atualizar_materia_por_nome_valores(materia_nome, **valores_mudados):
+def atualizar_materia_por_nome_valores(materia_nome, **valores_mudados) -> str:
     try:
         for k, v in valores_mudados.items():
             Query(
@@ -73,10 +62,12 @@ def atualizar_materia_por_nome_valores(materia_nome, **valores_mudados):
         WHERE materia_nome = %s 
                 """, (k, v, materia_nome)
             )
+        return "Valores atualizados com sucesso"
     except Exception as e:
         raise Exception("Algo deu de errado na operação, ERR: ", e)
 
-def atualizar_materia_por_id_completa(materia_id, nova_materia:msc.Materia):
+# fuunções PUT
+def atualizar_materia_por_id_completa(materia_id, nova_materia:msc.Materia) -> str:
     try:
         Query(
             """
@@ -90,10 +81,11 @@ WHERE materia_id = %s
 INSERT INTO materias(materia_nome) VALUES (%s)
             """, (nova_materia.nome,)
         )
+        return "Materia atualizada com sucesso"
     except Exception as e:
         raise Exception("Algo deu de errado na operação, ERR: ", e)
 
-def atualizar_materia_por_nome_completa(materia_nome, nova_materia:msc.Materia):
+def atualizar_materia_por_nome_completa(materia_nome, nova_materia:msc.Materia) -> str:
     try:
         Query(
             """
@@ -107,5 +99,9 @@ def atualizar_materia_por_nome_completa(materia_nome, nova_materia:msc.Materia):
 INSERT INTO bobicas(materia_nome) VALUES (%s)
             """, (nova_materia.nome,)
         )
+        return "Materia atualizada com sucesso"
     except Exception as e:
         raise Exception("Algo deu de errado na operação, ERR: ", e)
+
+if __name__ == "__main__":
+    print(obter_id_por_materia("ciencias"))

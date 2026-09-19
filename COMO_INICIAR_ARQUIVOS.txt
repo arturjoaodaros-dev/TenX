@@ -1,0 +1,113 @@
+COMANDOS PARA INICIAR OS ARQUIVOS
+=================================
+
+Execute os comandos a partir da pasta:
+
+C:\Users\artur\Projects\TenX
+
+Use o Python do ambiente virtual:
+
+C:\Users\artur\Projects\TenX\.venv\Scripts\python.exe
+
+
+App\__init__.py
+----------------
+Comando:
+C:\Users\artur\Projects\TenX\.venv\Scripts\python.exe -m App
+
+
+App\main.py
+-----------
+Comando:
+C:\Users\artur\Projects\TenX\.venv\Scripts\python.exe App\main.py
+
+
+App\Database\__init__.py
+------------------------
+Comando:
+C:\Users\artur\Projects\TenX\.venv\Scripts\python.exe -m App.Database
+
+
+App\Database\connector.py
+-------------------------
+Comando:
+C:\Users\artur\Projects\TenX\.venv\Scripts\python.exe -m App.Database.connector
+
+
+App\Database\materias.py
+------------------------
+Comando:
+C:\Users\artur\Projects\TenX\.venv\Scripts\python.exe -m App.Database.materias
+
+
+App\Database\bobicas.py
+-----------------------
+Comando:
+C:\Users\artur\Projects\TenX\.venv\Scripts\python.exe -m App.Database.bobicas
+
+
+App\Database\provas.py
+---------------------
+Comando:
+C:\Users\artur\Projects\TenX\.venv\Scripts\python.exe -m App.Database.provas
+
+
+App\schemas\__init__.py
+-----------------------
+Comando:
+C:\Users\artur\Projects\TenX\.venv\Scripts\python.exe -m App.schemas
+
+
+App\schemas\materias.py
+-----------------------
+Comando:
+C:\Users\artur\Projects\TenX\.venv\Scripts\python.exe -m App.schemas.materias
+
+
+App\schemas\bobicas.py
+----------------------
+Comando:
+C:\Users\artur\Projects\TenX\.venv\Scripts\python.exe -m App.schemas.bobicas
+
+
+App\schemas\provas.py
+--------------------
+Comando:
+C:\Users\artur\Projects\TenX\.venv\Scripts\python.exe -m App.schemas.provas
+
+
+App\Routers\__init__.py
+-----------------------
+Comando:
+C:\Users\artur\Projects\TenX\.venv\Scripts\python.exe -m App.Routers
+
+
+App\Routers\materias.py
+-----------------------
+Comando:
+C:\Users\artur\Projects\TenX\.venv\Scripts\python.exe -m App.Routers.materias
+
+
+App\Routers\bobicas.py
+----------------------
+Comando:
+C:\Users\artur\Projects\TenX\.venv\Scripts\python.exe -m App.Routers.bobicas
+
+
+App\Routers\provas.py
+--------------------
+Comando:
+C:\Users\artur\Projects\TenX\.venv\Scripts\python.exe -m App.Routers.provas
+
+
+App\services\__init__.py
+------------------------
+Comando:
+C:\Users\artur\Projects\TenX\.venv\Scripts\python.exe -m App.services
+
+
+App\models\__init__.py
+----------------------
+Comando:
+C:\Users\artur\Projects\TenX\.venv\Scripts\python.exe -m App.models
+

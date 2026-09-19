@@ -45,4 +45,5 @@ def atualizar_bobica(nova_bobica:bsc.Bobica, nome_bobica:str="", id_bobica:int=0
     if not id_bobica:
         return bdb.atualizar_bobica_por_nome_completa(nome_bobica, nova_bobica)
     else:
-        return bdb.atualizar_bobica_por_id_completa(nome_bobica, nova_bobica)
+        return bdb.atualizar_bobica_por_id_completa(id_bobica, nova_bobica)
+

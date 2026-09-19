@@ -1,17 +1,23 @@
+# COMUNICAÇÃO COM O DATABASE DAS PROVAS
+# NOME DOS IMPORTS DEVE SER pdb
+# imports
 from App.Database.connector import Query
 from App.Database import materias as mdb
 from App.Database import bobicas as bdb
 from App.schemas import provas as psc
-def criar_prova(nome_materia, nome_bobica):
+# funções POST
+def criar_prova(nome_materia, nome_bobica) -> str:
     try:
-        return Query(
+        Query(
             """
     INSERT INTO provas(materia_id, bobica_id) VALUES(%s, %s)
-            """, (mdb.obter_id_por_materia(nome_materia)[0], bdb.obter_id_por_bobica(nome_bobica)[0]))
+            """, (mdb.obter_id_por_materia(nome_materia), bdb.obter_id_por_bobica(nome_bobica)))
+        return "prova criada com sucesso"
     except Exception as e:
         raise Exception("Algo deu de errado na operação, ERR: ", e)
 
-def listar_provas(nome:str=""):
+# funções GET
+def listar_provas(nome:str="") -> dict:
     provas = {}
     for d in Query("SELECT * FROM provas", return_info="data"):
         try:
@@ -23,7 +29,8 @@ def listar_provas(nome:str=""):
     else:
         return provas
 
-def atualizar_prova_por_id(id_prova, **valores_mudados):
+# funções PATCH
+def atualizar_prova_por_id_valores(id_prova, **valores_mudados) -> str:
     try:
         for k, v in valores_mudados.items():
             Query(
@@ -33,10 +40,11 @@ def atualizar_prova_por_id(id_prova, **valores_mudados):
         WHERE prova_id = %s 
                 """, (k, v, id_prova)
             )
+        return "Valores atualizados com sucesso"
     except Exception as e:
         raise Exception("Algo deu de errado na operação, ERR: ", e)
 
-def atualizar_prova_por_materia(nome_materia, **valores_mudados):
+def atualizar_prova_por_materia_valores(nome_materia, **valores_mudados) -> str:
     try:
         for k, v in valores_mudados.items():
             Query(
@@ -46,10 +54,11 @@ def atualizar_prova_por_materia(nome_materia, **valores_mudados):
         WHERE materia_id = %s 
                 """, (k, v, mdb.obter_id_por_materia(nome_materia))
             )
+        return "Valores atualizados com sucesso"
     except Exception as e:
         raise Exception("Algo deu de errado na operação, ERR: ", e)
     
-def atualizar_prova_por_bobica(nome_bobica, **valores_mudados):
+def atualizar_prova_por_bobica_valores(nome_bobica, **valores_mudados) -> str:
     try:
         for k, v in valores_mudados.items():
             Query(
@@ -59,10 +68,12 @@ def atualizar_prova_por_bobica(nome_bobica, **valores_mudados):
         WHERE bobica_id = %s 
                 """, (k, v, bdb.obter_id_por_bobica(nome_bobica))
             )
+        return "Valores atualizados com sucesso"
     except Exception as e:
         raise Exception("Algo deu de errado na operação, ERR: ", e)
-    
-def atualizar_prova_por_id_completa(prova_id, nova_prova:psc.Prova):
+
+# funções PUT
+def atualizar_prova_por_id_completa(prova_id, nova_prova:psc.Prova) -> str:
     try:
         Query(
             """
@@ -76,10 +87,11 @@ WHERE prova_id = %s
         INSERT INTO provas(materia_id, bobica_id) VALUES (%s, %s)
             """, (mdb.obter_id_por_materia(nova_prova.nome_materia), bdb.obter_id_por_bobica(nova_prova.nome_bobica))
             )
+        return "prova atualizada com sucesso"
     except Exception as e:
         raise Exception("Algo deu de errado na operação, ERR: ", e)
 
-def atualizar_prova_por_materia_completa(nome_materia, nova_prova:psc.Prova):
+def atualizar_prova_por_materia_completa(nome_materia, nova_prova:psc.Prova) -> str:
     try:
         Query(
             """
@@ -93,10 +105,11 @@ def atualizar_prova_por_materia_completa(nome_materia, nova_prova:psc.Prova):
 INSERT INTO provas(materia_id, bobica_id) VALUES (%s, %s)
             """, (mdb.obter_id_por_materia(nova_prova.nome_materia), bdb.obter_id_por_bobica(nova_prova.nome_bobica))
         )
+        return "prova atualizada com sucesso"
     except Exception as e:
         raise Exception("Algo deu de errado na operação, ERR: ", e)
 
-def atualizar_prova_por_bobica_completa(nome_bobica, nova_prova:psc.Prova):
+def atualizar_prova_por_bobica_completa(nome_bobica, nova_prova:psc.Prova) -> str:
     try:
         Query(
             """
@@ -110,5 +123,6 @@ def atualizar_prova_por_bobica_completa(nome_bobica, nova_prova:psc.Prova):
 INSERT INTO provas(materia_id, bobica_id) VALUES (%s, %s)
             """, (mdb.obter_id_por_materia(nova_prova.nome_materia), bdb.obter_id_por_bobica(nova_prova.nome_bobica))
         )
+        return "prova atualizada com sucesso"
     except Exception as e:
         raise Exception("Algo deu de errado na operação, ERR: ", e)

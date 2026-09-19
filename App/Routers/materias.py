@@ -37,3 +37,10 @@ def criar_materia(materia:msc.Materia):
             "status": "erro na criacao",
             "nome": materia.nome,
         }
+
+@router.put('/')
+def atualizar_bobica(nova_materia:msc.Materia, nome_materia:str="", id_materia:int=0):
+    if not id_materia:
+        return mdb.atualizar_materia_por_nome_completa(nome_materia, nova_materia)
+    else:
+        return mdb.atualizar_materia_por_nome_completa(id_materia, nova_materia)
