@@ -42,43 +42,43 @@ def listar_provas_por_id(id_prova):
     return processed_data
 
 # funções PATCH
-def atualizar_prova_por_id_valores(id_prova, **valores_mudados) -> str:
+def atualizar_prova_por_id_valores(id_prova, valores_mudados:dict) -> str:
     try:
         for k, v in valores_mudados.items():
             Query(
-                """
+                f"""
         UPDATE provas
-        SET %s = %s
+        SET {k} = %s
         WHERE prova_id = %s 
-                """, (k, v, id_prova)
+                """, (v, id_prova)
             )
         return "Valores atualizados com sucesso"
     except Exception as e:
         raise Exception("Algo deu de errado na operação, ERR: ", e)
 
-def atualizar_prova_por_materia_valores(nome_materia, **valores_mudados) -> str:
+def atualizar_prova_por_materia_valores(nome_materia, valores_mudados:dict) -> str:
     try:
         for k, v in valores_mudados.items():
             Query(
-                """
+                f"""
         UPDATE provas
-        SET %s = %s
+        SET {k} = %s
         WHERE materia_id = %s 
-                """, (k, v, mdb.obter_id_por_materia(nome_materia))
+                """, (v, mdb.obter_id_por_materia(nome_materia))
             )
         return "Valores atualizados com sucesso"
     except Exception as e:
         raise Exception("Algo deu de errado na operação, ERR: ", e)
     
-def atualizar_prova_por_bobica_valores(nome_bobica, **valores_mudados) -> str:
+def atualizar_prova_por_bobica_valores(nome_bobica, valores_mudados:dict) -> str:
     try:
         for k, v in valores_mudados.items():
             Query(
-                """
+                f"""
         UPDATE provas
-        SET %s = %s
+        SET {k} = %s
         WHERE bobica_id = %s 
-                """, (k, v, bdb.obter_id_por_bobica(nome_bobica))
+                """, (v, bdb.obter_id_por_bobica(nome_bobica))
             )
         return "Valores atualizados com sucesso"
     except Exception as e:
@@ -138,5 +138,3 @@ INSERT INTO provas(materia_id, bobica_id) VALUES (%s, %s)
         return "prova atualizada com sucesso"
     except Exception as e:
         raise Exception("Algo deu de errado na operação, ERR: ", e)
-
-print(Query("SELECT materia_id, bobica_id FROM provas WHERE prova_id = %s",(1, ), "data"))

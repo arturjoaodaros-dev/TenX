@@ -42,15 +42,15 @@ def obter_materia_por_id(id_materia):
 
 
 # funções PATCH
-def atualizar_materia_por_id_valores(materia_id, **valores_mudados) -> str:
+def atualizar_materia_por_id_valores(materia_id, valores_mudados:dict) -> str:
     try:
         for k, v in valores_mudados.items():
             Query(
-                """
+                f"""
         UPDATE materias
-        SET %s = %s
+        SET {k} = %s
         WHERE materia_id = %s; 
-                """, (k, v, materia_id)
+                """, (v, materia_id)
             )
         return "Valores atualizados com sucesso"
     except Exception as e:
@@ -60,11 +60,11 @@ def atualizar_materia_por_nome_valores(materia_nome, **valores_mudados) -> str:
     try:
         for k, v in valores_mudados.items():
             Query(
-                """
+                f"""
         UPDATE materias
-        SET %s = %s
+        SET {k} = %s
         WHERE materia_nome = %s;
-                """, (k, v, materia_nome)
+                """, (v, materia_nome)
             )
         return "Valores atualizados com sucesso"
     except Exception as e:

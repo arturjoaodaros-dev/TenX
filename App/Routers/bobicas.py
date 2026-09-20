@@ -46,3 +46,17 @@ def atualizar_bobica(nova_bobica:bsc.Bobica, nome_bobica:str="", id_bobica:int=0
             "id_bobica":id_bobica
             }
 
+@router.patch('/')
+def atualizar_valor_bobica(valores:dict, nome_bobica:str="", id_bobica:int=0, ):
+    print("NO ROUTER:", valores)
+    if not id_bobica:
+        return {
+            "status": bdb.atualizar_bobica_por_nome_valores(nome_bobica, valores_mudados=valores),
+            "nome" : nome_bobica
+            }
+    else:
+        return {
+            "stauts" : bdb.atualizar_bobica_por_id_valores(id_bobica, valores_mudados=valores),
+            "id_bobica":id_bobica
+            }
+

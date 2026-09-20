@@ -32,30 +32,22 @@ def obter_bobica_por_id(id_bobica) -> str:
         return "Not found"
 
 # funções PATCH
-def atualizar_bobica_por_id_valores(id_bobica, **valores_mudados) -> str:
+def atualizar_bobica_por_id_valores(id_bobica, valores_mudados:dict) -> str:
+    print("NO DATABASE:", valores_mudados)
     try:
         for k, v in valores_mudados.items():
-            Query(
-                """
-        UPDATE bobicas
-        SET %s = %s
-        WHERE bobica_id = %s 
-                """, (k, v, id_bobica)
-            )
+            print(k, v, id_bobica)
+            Query(f"UPDATE bobicas SET {k} = %s WHERE bobica_id = %s;", params=(v, id_bobica), return_info="data")
         return "valores atualizados com sucesso"
     except Exception as e:
         raise Exception("Algo deu de errado na operação, ERR: ", e)
 
-def atualizar_bobica_por_nome_valores(nome_bobica, **valores_mudados) -> str:
+def atualizar_bobica_por_nome_valores(nome_bobica, valores_mudados:dict) -> str:
+    print("NO DATABASE:", valores_mudados)
     try:
         for k, v in valores_mudados.items():
-            Query(
-                """
-        UPDATE bobicas
-        SET %s = %s
-        WHERE bobica_nome = %s 
-                """, (k, v, nome_bobica)
-            )
+            print(k, v, nome_bobica)
+            Query(f"UPDATE bobicas SET {k} = %s WHERE bobica_nome = %s;", params=(v, nome_bobica), return_info="data")
         return "valores atualizados com sucesso"
     except Exception as e:
         raise Exception("Algo deu de errado na operação, ERR: ", e)
@@ -63,18 +55,8 @@ def atualizar_bobica_por_nome_valores(nome_bobica, **valores_mudados) -> str:
 # funções PUT
 def atualizar_bobica_por_id_completa(id_bobica, nova_bobica:bsc.Bobica) -> str:
     try:
-        Query(
-            """
-DELETE FROM bobicas
-WHERE bobica_id = %s 
-            """, (id_bobica, )
-            )
-        
-        Query(
-            """
-        INSERT INTO bobicas(bobica_nome, preco_medio) VALUES (%s, %s)
-            """, (nova_bobica.nome, nova_bobica.preco_medio)
-            )
+        Query("UPDATE bobicas SET bobica_nome = %s WHERE bobica_id = %s",(nova_bobica.nome, id_bobica))
+        Query("UPDATE bobicas SET preco_medio = %s WHERE bobica_id = %s",(nova_bobica.preco_medio, id_bobica))
         return "bobica atualizada com sucesso"
     except Exception as e:
         raise Exception("Algo deu de errado na operação, ERR: ", e)

@@ -32,7 +32,7 @@ def criar_materia(materia:msc.Materia) -> dict:
         }
 
 @router.put('/')
-def atualizar_bobica(nova_materia:msc.Materia, nome_materia:str="", id_materia:int=0) -> dict:
+def atualizar_materia(nova_materia:msc.Materia, nome_materia:str="", id_materia:int=0) -> dict:
     if not id_materia:
         return {
             "status": mdb.atualizar_materia_por_nome_completa(nome_materia, nova_materia),
@@ -43,3 +43,17 @@ def atualizar_bobica(nova_materia:msc.Materia, nome_materia:str="", id_materia:i
             "status": mdb.atualizar_materia_por_nome_completa(id_materia, nova_materia),
             "id_materia": id_materia
         }
+
+@router.patch('/')
+def atualizar_valor_materia(valores:dict, nome_materia:str="", id_materia:int=0, ):
+    print("NO ROUTER:", valores)
+    if not id_materia:
+        return {
+            "status": mdb.atualizar_materia_por_nome_valores(nome_materia, valores_mudados=valores),
+            "nome_materia" : nome_materia
+            }
+    else:
+        return {
+            "stauts" : mdb.atualizar_materia_por_id_valores(id_materia, valores_mudados=valores),
+            "id_bobica":id_materia
+            }

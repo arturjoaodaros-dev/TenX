@@ -1,0 +1,514 @@
+# LISTA DE TAREFAS A FAZER
+
+>todo.md para se guuiar melhor no projeto até conseguir termina-lo como uma aplicação real, sem IA, sem vibecode
+
+## DIA 1
+
+iniciar o projeto, construir as primeiras pastas, instalar
+as dependencias e configurar o ambiente para que possamos
+começar a codar rapidamente
+
+- [x] Dia completo? Dá commit
+
+## DIA 2
+
+criar o main.py, routers, criar o sistema de conexão com o
+banco e colocar uma mensagem de boas vindas
+
+- [X] Dia completo? Dá commit
+
+## DIA 3
+
+criar as tabelas e chaves primárias/estrangeiras no banco
+de dados fazer as funções GET do banco de dados, retornando
+as listas com seus valores
+
+- [X] Dia completo? Dá commit
+
+## DIA 4
+
+vincular as funções aos routers, exibindo as matérias e aceitando
+pesquisa tanto por query tanto por path
+
+- [X] Dia completo? Dá commit
+
+## DIA 5
+
+organizar melhor o projeto e definir o que a primeira versão precisa
+fazer. Escrever uma lista curta das telas, dos usuários e das ações
+principais. Não adicionar funcionalidades novas ainda.
+
+- [ ] Definir o escopo da primeira versão
+- [ ] Desenhar o fluxo principal em papel
+- [ ] Dá commit
+
+## DIA 6
+
+revisar as tabelas criadas e confirmar os relacionamentos entre elas.
+Corrigir nomes, tipos e campos que forem realmente necessários.
+
+- [ ] Revisar o modelo do banco
+- [ ] Criar ou ajustar as migrations
+- [ ] Dá commit
+
+## DIA 7
+
+adicionar validação dos dados recebidos pela API. As mensagens de erro
+devem ser simples e indicar como corrigir o problema.
+
+- [ ] Validar os dados de entrada
+- [ ] Padronizar respostas de erro
+- [ ] Dá commit
+
+## DIA 8
+
+criar as funções de cadastro, edição e remoção das matérias. Manter
+essas funções separadas dos routers para facilitar os testes.
+
+- [ ] Criar operações de criar, editar e remover
+- [ ] Testar os casos básicos
+- [ ] Dá commit
+
+## DIA 9
+
+vincular as novas operações aos routers e conferir os códigos HTTP.
+Testar também uma requisição inválida.
+
+- [ ] Criar os endpoints de escrita
+- [ ] Conferir respostas de sucesso e erro
+- [ ] Dá commit
+
+## DIA 10
+
+criar um endpoint de status da aplicação e uma documentação simples
+da API. Deixar claro como iniciar o servidor localmente.
+
+- [ ] Criar endpoint de saúde
+- [ ] Revisar documentação automática da API
+- [ ] Dá commit
+
+## DIAS 11 A 40 — BACKEND E BASE DA APLICAÇÃO
+
+Durante esta etapa, não criar telas finais. Deixar a API, o banco,
+a autenticação e as regras prontas para o frontend consumir depois.
+
+### DIA 11
+
+criar e ajustar as operações de criar, editar e remover matérias.
+
+- [ ] Criar operações no serviço
+- [ ] Testar os casos básicos
+- [ ] Dá commit
+
+### DIA 12
+
+vincular as operações aos routers e conferir os códigos HTTP.
+
+- [ ] Criar endpoints de escrita
+- [ ] Tratar entradas inválidas
+- [ ] Dá commit
+
+### DIA 13
+
+padronizar respostas de sucesso e de erro da API.
+
+- [ ] Definir formato das respostas
+- [ ] Criar mensagens claras
+- [ ] Dá commit
+
+### DIA 14
+
+revisar o modelo do banco e corrigir relacionamentos, nomes e tipos.
+
+- [ ] Revisar tabelas e chaves
+- [ ] Criar ou ajustar migrations
+- [ ] Dá commit
+
+### DIA 15
+
+criar usuários e cadastro persistido no banco.
+
+- [ ] Criar tabela de usuários
+- [ ] Criar endpoint de cadastro
+- [ ] Dá commit
+
+### DIA 16
+
+adicionar login com senha protegida por hash.
+
+- [ ] Implementar hash seguro
+- [ ] Criar endpoint de login
+- [ ] Dá commit
+
+### DIA 17
+
+proteger endpoints e verificar se cada usuário acessa somente seus dados.
+
+- [ ] Adicionar autenticação
+- [ ] Verificar dono das matérias
+- [ ] Dá commit
+
+### DIA 18
+
+criar perfil básico e alteração dos dados permitidos.
+
+- [ ] Criar endpoint de perfil
+- [ ] Validar alterações
+- [ ] Dá commit
+
+### DIA 19
+
+adicionar duplicação de matérias no backend.
+
+- [ ] Criar endpoint de duplicação
+- [ ] Garantir novo identificador e proprietário
+- [ ] Dá commit
+
+### DIA 20
+
+adicionar busca, ordenação e filtros simples na API.
+
+- [ ] Definir filtros permitidos
+- [ ] Testar combinações básicas
+- [ ] Dá commit
+
+### DIA 21
+
+adicionar paginação ou limite de resultados para a lista.
+
+- [ ] Definir limite por página
+- [ ] Ajustar respostas da API
+- [ ] Dá commit
+
+### DIA 22
+
+criar status de rascunho e publicada.
+
+- [ ] Adicionar status no banco
+- [ ] Criar ações de publicação
+- [ ] Dá commit
+
+### DIA 23
+
+criar visualização de uma matéria publicada no backend.
+
+- [ ] Criar endpoint de visualização
+- [ ] Impedir acesso indevido a rascunhos
+- [ ] Dá commit
+
+### DIA 24
+
+criar endpoint para salvar HTML e CSS produzidos pelo editor.
+
+- [ ] Adicionar campos de conteúdo
+- [ ] Validar tamanho e formato
+- [ ] Dá commit
+
+### DIA 25
+
+criar upload de imagens com validação de tipo e tamanho.
+
+- [ ] Criar endpoint de upload
+- [ ] Definir local de armazenamento
+- [ ] Dá commit
+
+### DIA 26
+
+criar endpoint de saúde e revisar a documentação automática da API.
+
+- [ ] Criar endpoint de status
+- [ ] Documentar endpoints principais
+- [ ] Dá commit
+
+### DIA 27
+
+criar logs úteis sem expor senhas, tokens ou dados desnecessários.
+
+- [ ] Definir eventos importantes
+- [ ] Revisar dados dos logs
+- [ ] Dá commit
+
+### DIA 28
+
+separar configurações por ambiente e criar arquivo de exemplo sem segredos.
+
+- [ ] Configurar variáveis de ambiente
+- [ ] Atualizar instruções de início
+- [ ] Dá commit
+
+### DIA 29
+
+revisar validação, permissões, sessão, CORS e uploads.
+
+- [ ] Corrigir configurações inseguras
+- [ ] Testar acessos negados
+- [ ] Dá commit
+
+### DIA 30
+
+criar testes unitários das regras principais do backend.
+
+- [ ] Testar usuários e matérias
+- [ ] Cobrir casos de erro
+- [ ] Dá commit
+
+### DIA 31
+
+criar testes dos endpoints e dos códigos HTTP.
+
+- [ ] Testar autenticação
+- [ ] Testar usuários diferentes
+- [ ] Dá commit
+
+### DIA 32
+
+criar dados de exemplo para desenvolvimento sem apagar dados reais.
+
+- [ ] Criar seed repetível
+- [ ] Documentar como usar
+- [ ] Dá commit
+
+### DIA 33
+
+revisar as consultas mais usadas e criar índices necessários.
+
+- [ ] Conferir consultas
+- [ ] Adicionar índices justificados
+- [ ] Dá commit
+
+### DIA 34
+
+criar resumo da aplicação: matérias, rascunhos e últimas alterações.
+
+- [ ] Criar endpoint de resumo
+- [ ] Testar os números retornados
+- [ ] Dá commit
+
+### DIA 35
+
+adicionar data de atualização e histórico mínimo da matéria.
+
+- [ ] Salvar última alteração
+- [ ] Definir o nível mínimo de histórico
+- [ ] Dá commit
+
+### DIA 36
+
+preparar backup e restauração do banco.
+
+- [ ] Documentar backup
+- [ ] Testar restauração
+- [ ] Dá commit
+
+### DIA 37
+
+revisar o código backend e dividir módulos grandes demais.
+
+- [ ] Separar responsabilidades
+- [ ] Remover repetição desnecessária
+- [ ] Dá commit
+
+### DIA 38
+
+preparar configuração de produção, arquivos estáticos e comando de início.
+
+- [ ] Testar configuração de produção
+- [ ] Conferir origens permitidas
+- [ ] Dá commit
+
+### DIA 39
+
+fazer uma rodada completa de testes da API e corrigir problemas críticos.
+
+- [ ] Rodar testes automatizados
+- [ ] Corrigir perda de dados e acessos indevidos
+- [ ] Dá commit
+
+### DIA 40
+
+congelar a API para iniciar a última etapa. Registrar endpoints,
+campos e decisões que o frontend deverá usar.
+
+- [ ] Criar referência curta da API
+- [ ] Confirmar que o backend está utilizável sem frontend
+- [ ] Dá commit
+
+## DIAS 41 A 60 — FRONTEND E ENTREGA FINAL
+
+Esta é a última etapa. Usar HTML, CSS, JavaScript puro e GrapesJS.
+Priorizar funcionamento, leitura e clareza; não buscar um visual complexo.
+
+### DIA 41
+
+criar as pastas do frontend e o layout HTML base.
+
+- [ ] Criar arquivos HTML, CSS e JavaScript
+- [ ] Criar navegação inicial
+- [ ] Dá commit
+
+### DIA 42
+
+carregar o GrapesJS e criar uma área de edição funcional.
+
+- [ ] Instalar ou carregar o GrapesJS
+- [ ] Criar o canvas do editor
+- [ ] Dá commit
+
+### DIA 43
+
+adicionar blocos básicos: título, texto, imagem, botão e seção.
+
+- [ ] Criar blocos iniciais
+- [ ] Testar arrastar e editar
+- [ ] Dá commit
+
+### DIA 44
+
+criar as telas de login, cadastro e saída.
+
+- [ ] Criar formulários
+- [ ] Mostrar erros de acesso
+- [ ] Dá commit
+
+### DIA 45
+
+criar a lista de matérias consumindo a API.
+
+- [ ] Criar cliente HTTP simples
+- [ ] Mostrar carregamento, vazio e erro
+- [ ] Dá commit
+
+### DIA 46
+
+criar o formulário de nova matéria e atualizar a lista após salvar.
+
+- [ ] Enviar dados para a API
+- [ ] Mostrar confirmação
+- [ ] Dá commit
+
+### DIA 47
+
+adicionar edição, remoção, duplicação e filtros na lista.
+
+- [ ] Adicionar ações de matéria
+- [ ] Pedir confirmação antes de remover
+- [ ] Dá commit
+
+### DIA 48
+
+conectar o GrapesJS ao backend para salvar HTML e CSS.
+
+- [ ] Salvar conteúdo da matéria
+- [ ] Mostrar estado de salvamento
+- [ ] Dá commit
+
+### DIA 49
+
+carregar conteúdo existente no GrapesJS e testar reabertura da matéria.
+
+- [ ] Carregar HTML e CSS
+- [ ] Testar fechar, abrir e salvar novamente
+- [ ] Dá commit
+
+### DIA 50
+
+adicionar autosave opcional com intervalo seguro.
+
+- [ ] Evitar muitas requisições
+- [ ] Mostrar salvando, salvo e erro
+- [ ] Dá commit
+
+### DIA 51
+
+adicionar publicação, rascunho e visualização de matéria.
+
+- [ ] Criar ações de status
+- [ ] Criar tela de leitura
+- [ ] Dá commit
+
+### DIA 52
+
+adicionar upload de imagens ao fluxo do editor.
+
+- [ ] Usar o endpoint de upload
+- [ ] Mostrar erro de tipo ou tamanho
+- [ ] Dá commit
+
+### DIA 53
+
+criar a página inicial com resumo de matérias e últimas alterações.
+
+- [ ] Consumir endpoint de resumo
+- [ ] Criar cartões simples de informação
+- [ ] Dá commit
+
+### DIA 54
+
+revisar acessibilidade básica e navegação por teclado.
+
+- [ ] Corrigir labels e títulos
+- [ ] Conferir foco e leitura
+- [ ] Dá commit
+
+### DIA 55
+
+padronizar mensagens, estados de erro e sessão expirada.
+
+- [ ] Revisar textos exibidos
+- [ ] Tratar falhas de conexão
+- [ ] Dá commit
+
+### DIA 56
+
+testar o fluxo completo no frontend: entrar, criar, editar, salvar
+e publicar uma matéria.
+
+- [ ] Fazer teste manual completo
+- [ ] Corrigir problemas bloqueadores
+- [ ] Dá commit
+
+### DIA 57
+
+testar em computador e celular e corrigir apenas quebras de uso.
+
+- [ ] Testar tamanhos de tela
+- [ ] Ajustar leitura e botões
+- [ ] Dá commit
+
+### DIA 58
+
+executar testes automatizados e revisar segurança do frontend.
+
+- [ ] Rodar testes do projeto
+- [ ] Conferir XSS, tokens e dados exibidos
+- [ ] Dá commit
+
+### DIA 59
+
+preparar a primeira versão: backup, checklist e notas curtas.
+
+- [ ] Fazer backup antes da publicação
+- [ ] Confirmar backend e frontend
+- [ ] Dá commit
+
+### DIA 60
+
+publicar a aplicação e verificar o fluxo principal em produção.
+Anotar melhorias futuras sem aumentar o escopo desta versão.
+
+- [ ] Publicar a aplicação
+- [ ] Conferir login, matérias, editor e publicação
+- [ ] Registrar o que ficou para a próxima versão
+- [ ] Dá commit
+
+## Ritmo recomendado
+
+- Fazer uma tarefa principal por dia; se terminar cedo, revisar em vez de
+  adicionar uma funcionalidade nova.
+- Reservar um dia de descanso ou recuperação quando necessário. O prazo é
+  uma referência, não uma obrigação.
+- Fazer commit ao final de cada dia completo, com uma mensagem curta.
+- Se uma tarefa ficar grande, dividir em dois dias e mover o restante para
+  o dia seguinte.
+- A primeira versão precisa ser completa no fluxo principal, não completa
+  em quantidade de funcionalidades.

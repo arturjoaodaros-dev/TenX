@@ -63,9 +63,23 @@ def atualizar_prova(nova_prova:psc.Prova, id_prova:int=0, nome_bobica:str="", no
         }
     else:
         return{
-            "error":"you must inform id_prova, nome_materia or nome_bobica",
-            "id_prova": id_prova,
-            "nome_bobica": nome_bobica,
-            "nome_materia": nome_materia,
-            "prova_bobica": nova_prova.nome_bobica,
-            "prova_materia": nova_prova.nome_materia}
+            "error":"you must inform id_prova, nome_materia or nome_bobica",}
+
+@router.patch('/')
+def atualizar_valor_bobica(valores:dict, nome_materia:str="", id_prova:int=0, nome_bobica:str=""):
+    print("NO ROUTER:", valores)
+    if id_prova:
+        return {
+            "status": pdb.atualizar_prova_por_id_valores(id_prova, valores_mudados=valores),
+            "nome_materia" : id_prova
+            }
+    elif nome_materia:
+        return {
+            "stauts" : pdb.atualizar_prova_por_materia_valores(nome_materia, valores_mudados=valores),
+            "id_bobica":nome_materia
+            }
+    elif nome_bobica:
+        return{
+            "status": pdb.atualizar_prova_por_bobica_valores(nome_bobica, valores_mudados=valores),
+            "nome_bobica":nome_bobica
+        }
