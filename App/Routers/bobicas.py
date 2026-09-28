@@ -60,3 +60,16 @@ def atualizar_valor_bobica(valores:dict, nome_bobica:str="", id_bobica:int=0, ):
             "id_bobica":id_bobica
             }
 
+@router.delete("/{bobica_nome}")
+def excluir_bobica_por_nome(bobica_nome, senha:str):
+    import dotenv, os
+    dotenv.load_dotenv()
+    if senha == os.getenv("DESTRUCTION_PASSWORD"):
+        bdb.destruir_bobica_por_nome(bobica_nome)
+
+@router.delete("/{bobica_id}")
+def excluir_bobica_por_id(bobica_id, senha:str):
+    import dotenv, os
+    dotenv.load_dotenv()
+    if senha == os.getenv("DESTRUCTION_PASSWORD"):
+        bdb.destruir_bobica_por_id(bobica_id)

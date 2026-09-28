@@ -83,3 +83,24 @@ def atualizar_valor_bobica(valores:dict, nome_materia:str="", id_prova:int=0, no
             "status": pdb.atualizar_prova_por_bobica_valores(nome_bobica, valores_mudados=valores),
             "nome_bobica":nome_bobica
         }
+
+@router.delete("/{materia_nome}")
+def excluir_bobica_por_materia(materia_nome, senha:str):
+    import dotenv, os
+    dotenv.load_dotenv()
+    if senha == os.getenv("DESTRUCTION_PASSWORD"):
+        pdb.destruir_prova_por_materia(materia_nome)
+
+@router.delete("/{bobica_id}")
+def excluir_prova_por_bobica(bobica_id, senha:str):
+    import dotenv, os
+    dotenv.load_dotenv()
+    if senha == os.getenv("DESTRUCTION_PASSWORD"):
+        pdb.destruir_prova_por_bobica(bobica_id)
+
+@router.delete("/{prova_id}")
+def excluir_prova_por_id(prova_id, senha:str):
+    import dotenv, os
+    dotenv.load_dotenv()
+    if senha == os.getenv("DESTRUCTION_PASSWORD"):
+        pdb.destruir_prova_por_id(prova_id)

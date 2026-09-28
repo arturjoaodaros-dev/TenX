@@ -57,3 +57,17 @@ def atualizar_valor_materia(valores:dict, nome_materia:str="", id_materia:int=0,
             "stauts" : mdb.atualizar_materia_por_id_valores(id_materia, valores_mudados=valores),
             "id_bobica":id_materia
             }
+
+@router.delete("/{materia_nome}")
+def excluir_bobica_por_nome(materia_nome, senha:str):
+    import dotenv, os
+    dotenv.load_dotenv()
+    if senha == os.getenv("DESTRUCTION_PASSWORD"):
+        mdb.destruir_materia_por_nome(materia_nome)
+
+@router.delete("/{bobica_id}")
+def excluir_bobica_por_id(bobica_id, senha:str):
+    import dotenv, os
+    dotenv.load_dotenv()
+    if senha == os.getenv("DESTRUCTION_PASSWORD"):
+        mdb.destruir_materia_por_id(bobica_id)

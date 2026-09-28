@@ -1,7 +1,9 @@
 # COMUNICAÇÕ COM O DATABASE DAS BOBICAS
 # NOME DOS IMPORTS DEVE SER bdb
 # imports
-from App.Database.connector import Query
+import os
+
+from App.Database.connector import Query, conn
 from App.schemas import bobicas as bsc
 
 # funções POST
@@ -78,3 +80,35 @@ INSERT INTO bobicas(bobica_nome, preco_medio) VALUES (%s, %s)
         return "bobica atualizada com sucesso"
     except Exception as e:
         raise Exception("Algo deu de errado na operação, ERR: ", e)
+
+# funções DELETE
+
+def Destruir_Tabela(password:str):
+    from dotenv import load_dotenv
+
+    load_dotenv()
+    destruction_password = os.getenv("DESTRUCTION_PASSWORD")
+    if destruction_password is None:
+        raise RuntimeError("DESTRUCTION_PASSWORD is not configured")
+
+    if password == destruction_password:
+        import time
+        Query("DROP TABLE bobicas", autocommit=False)
+        time.sleep(1.800)
+        conn.commit()
+
+    else:
+        from time import time
+        file = open("PASSWORD_NOT_MATCH.txt", "w")
+        file.write(f"""
+password: {password}
+time: {time()}
+                    """)
+
+def destruir_bobica_por_id(id_bobica):
+    Query("DELETE FROM bobicas WHERE bobica_id = %s", (id_bobica))
+
+def destruir_bobica_por_nome(nome_bobica):
+    Query("DELETE FROM bobicas WHERE bobica_nome = %s", (nome_bobica))
+    
+

@@ -38,27 +38,27 @@ organizar melhor o projeto e definir o que a primeira versão precisa
 fazer. Escrever uma lista curta das telas, dos usuários e das ações
 principais. Não adicionar funcionalidades novas ainda.
 
-- [ ] Definir o escopo da primeira versão
+- [X] Definir o escopo da primeira versão
 - [ ] Desenhar o fluxo principal em papel
-- [ ] Dá commit
+- [X] Dá commit
 
 ## DIA 6
 
 revisar as tabelas criadas e confirmar os relacionamentos entre elas.
 Corrigir nomes, tipos e campos que forem realmente necessários.
 
-- [ ] Revisar o modelo do banco
-- [ ] Criar ou ajustar as migrations
-- [ ] Dá commit
+- [X] Revisar o modelo do banco
+- [X] Criar ou ajustar as migrations
+- [X] Dá commit
 
 ## DIA 7
 
 adicionar validação dos dados recebidos pela API. As mensagens de erro
 devem ser simples e indicar como corrigir o problema.
 
-- [ ] Validar os dados de entrada
+- [X] Validar os dados de entrada
 - [ ] Padronizar respostas de erro
-- [ ] Dá commit
+- [X] Dá commit
 
 ## DIA 8
 
@@ -66,8 +66,8 @@ criar as funções de cadastro, edição e remoção das matérias. Manter
 essas funções separadas dos routers para facilitar os testes.
 
 - [ ] Criar operações de criar, editar e remover
-- [ ] Testar os casos básicos
-- [ ] Dá commit
+- [X] Testar os casos básicos
+- [X] Dá commit
 
 ## DIA 9
 

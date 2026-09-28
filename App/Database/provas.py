@@ -138,3 +138,12 @@ INSERT INTO provas(materia_id, bobica_id) VALUES (%s, %s)
         return "prova atualizada com sucesso"
     except Exception as e:
         raise Exception("Algo deu de errado na operação, ERR: ", e)
+
+def destruir_prova_por_id(id_prova):
+    Query("DELETE FROM provas WHERE prova_id = %s", (id_prova))
+
+def destruir_prova_por_bobica(nome_bobica):
+    Query("DELETE FROM provas WHERE bobica_id = %s", (bdb.obter_id_por_bobica(nome_bobica)))
+
+def destruir_prova_por_materia(nome_materia):
+    Query("DELETE FROM provas WHERE materia_id = %s", (mdb.obter_id_por_materia(nome_materia)))

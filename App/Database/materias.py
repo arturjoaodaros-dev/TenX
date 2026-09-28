@@ -107,5 +107,20 @@ INSERT INTO bobicas(materia_nome) VALUES (%s)
     except Exception as e:
         raise Exception("Algo deu de errado na operação, ERR: ", e)
 
+#funções DELETE
+
+def destruir_materia_por_id(id_materia):
+    try:
+        Query("DELETE FROM materias WHERE materia_id = %s", (id_materia, ))
+        return "materia deletada com sucesso"
+    except:
+        return "Erro no processo"
+
+def destruir_materia_por_nome(nome_materia):
+    try:
+        Query("DELETE FROM materias WHERE materia_nome = %s", (nome_materia, ))
+        return "materia deletada com sucesso"
+    except:
+        return "Erro no processo"
 if __name__ == "__main__":
     print(obter_id_por_materia("ciencias"))

@@ -10,9 +10,10 @@ conn = psycopg.connect(
     port=os.getenv("DB_PORT"),
     dbname=os.getenv("DB_NAME"),
     user=os.getenv("DB_USER"),
-    password=os.getenv("DB_PASSWORD")
+    password=os.getenv("DB_PASSWORD"),
+    autocommit=False
 )
-def Query(query, params=None, return_info:str="") -> list:
+def Query(query, params=None, return_info:str="", autocommit:bool=True) -> list:
     try:
         with conn.cursor() as cursor:
             cursor.execute(query, params)
@@ -21,7 +22,7 @@ def Query(query, params=None, return_info:str="") -> list:
                 dados = cursor.fetchall()
                 colunas = [desc.name for desc in cursor.description]
 
-                conn.commit()
+                if autocommit: conn.commit()
 
                 if return_info:
                     if return_info.lower() == "table":
@@ -46,4 +47,4 @@ def Query(query, params=None, return_info:str="") -> list:
         
 
     finally:
-        conn.commit()
+        if autocommit: conn.commit()
