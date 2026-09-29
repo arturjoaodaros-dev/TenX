@@ -57,7 +57,7 @@ adicionar validação dos dados recebidos pela API. As mensagens de erro
 devem ser simples e indicar como corrigir o problema.
 
 - [X] Validar os dados de entrada
-- [ ] Padronizar respostas de erro
+- [X] Padronizar respostas de erro
 - [X] Dá commit
 
 ## DIA 8
@@ -65,7 +65,7 @@ devem ser simples e indicar como corrigir o problema.
 criar as funções de cadastro, edição e remoção das matérias. Manter
 essas funções separadas dos routers para facilitar os testes.
 
-- [ ] Criar operações de criar, editar e remover
+- [X] Criar operações de criar, editar e remover
 - [X] Testar os casos básicos
 - [X] Dá commit
 
@@ -74,18 +74,18 @@ essas funções separadas dos routers para facilitar os testes.
 vincular as novas operações aos routers e conferir os códigos HTTP.
 Testar também uma requisição inválida.
 
-- [ ] Criar os endpoints de escrita
-- [ ] Conferir respostas de sucesso e erro
-- [ ] Dá commit
+- [X] Criar os endpoints de escrita
+- [X] Conferir respostas de sucesso e erro
+- [X] Dá commit
 
 ## DIA 10
 
 criar um endpoint de status da aplicação e uma documentação simples
 da API. Deixar claro como iniciar o servidor localmente.
 
-- [ ] Criar endpoint de saúde
-- [ ] Revisar documentação automática da API
-- [ ] Dá commit
+- [X] Criar endpoint de saúde
+- [X] Revisar documentação automática da API
+- [X] Dá commit
 
 ## DIAS 11 A 40 — BACKEND E BASE DA APLICAÇÃO
 
@@ -96,39 +96,39 @@ a autenticação e as regras prontas para o frontend consumir depois.
 
 criar e ajustar as operações de criar, editar e remover matérias.
 
-- [ ] Criar operações no serviço
-- [ ] Testar os casos básicos
-- [ ] Dá commit
+- [X] Criar operações no serviço
+- [X] Testar os casos básicos
+- [X] Dá commit
 
 ### DIA 12
 
 vincular as operações aos routers e conferir os códigos HTTP.
 
-- [ ] Criar endpoints de escrita
-- [ ] Tratar entradas inválidas
-- [ ] Dá commit
+- [X] Criar endpoints de escrita
+- [X] Tratar entradas inválidas
+- [X] Dá commit
 
 ### DIA 13
 
 padronizar respostas de sucesso e de erro da API.
 
-- [ ] Definir formato das respostas
-- [ ] Criar mensagens claras
-- [ ] Dá commit
+- [X] Definir formato das respostas
+- [X] Criar mensagens claras
+- [X] Dá commit
 
 ### DIA 14
 
 revisar o modelo do banco e corrigir relacionamentos, nomes e tipos.
 
-- [ ] Revisar tabelas e chaves
-- [ ] Criar ou ajustar migrations
-- [ ] Dá commit
+- [X] Revisar tabelas e chaves
+- [X] Criar ou ajustar migrations
+- [X] Dá commit
 
 ### DIA 15
 
 criar usuários e cadastro persistido no banco.
 
-- [ ] Criar tabela de usuários
+- [X] Criar tabela de usuários
 - [ ] Criar endpoint de cadastro
 - [ ] Dá commit
 
