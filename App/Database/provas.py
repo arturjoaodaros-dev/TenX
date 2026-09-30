@@ -6,12 +6,12 @@ from App.Database import materias as mdb
 from App.Database import bobicas as bdb
 from App.schemas import provas as psc
 # funções POST
-def criar_prova(nome_materia, nome_bobica) -> str:
+def criar_prova(prova:psc.Prova) -> str:
     try:
         Query(
             """
     INSERT INTO provas(materia_id, bobica_id) VALUES(%s, %s)
-            """, (mdb.obter_id_por_materia(nome_materia), bdb.obter_id_por_bobica(nome_bobica)))
+            """, (mdb.obter_id_por_materia(prova.nome_materia), bdb.obter_id_por_bobica(prova.nome_bobica)))
         return "prova criada com sucesso"
     except Exception as e:
         raise Exception("Algo deu de errado na operação, ERR: ", e)

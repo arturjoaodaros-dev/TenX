@@ -1,0 +1,16 @@
+from App.Database.connector import Query
+
+def criar_usuario():
+    ...
+
+def obter_usuario():
+    ...
+
+def remover_usuario():
+    ...
+
+def atualizar_usuario_valores():
+    ...
+
+def atualizar_usuario_completo():
+    ...

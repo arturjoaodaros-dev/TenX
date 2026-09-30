@@ -7,11 +7,11 @@ from App.Database.connector import Query, conn
 from App.schemas import bobicas as bsc
 
 # funções POST
-def criar_bobica(nome, preco) -> str:
+def criar_bobica(bobica:bsc.Bobica) -> str:
     Query(
         """
 INSERT INTO bobicas(bobica_nome, preco_medio) VALUES(%s, %s)
-        """, (nome, preco))
+        """, (bobica.nome, bobica.preco_medio))
     return "bobica criada com sucesso"
 # funções GET
 def listar_bobicas(nome: str = "") -> list:
