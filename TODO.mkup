@@ -501,6 +501,25 @@ Anotar melhorias futuras sem aumentar o escopo desta versão.
 - [ ] Registrar o que ficou para a próxima versão
 - [ ] Dá commit
 
+## Pendências do backend para o frontend (tela de conta e CRUD)
+
+O frontend (pasta `Frontend/`) já está pronto para consumir estes pontos.
+O ID do usuário vem da resposta do login (`{"id": ...}`), fica em
+`sessionStorage` (`tenx_usuario_id`) e é mostrado na tela `conta.html`.
+
+- [ ] Incluir `usuarios.router` em `App/main.py` (hoje `Routers/usuarios.py` está vazio)
+- [ ] `POST /usuarios/` — cadastro: recebe `{nome, email, senha}` (senha com hash)
+- [ ] Login: recebe `{email, senha}` e devolve `{"id": <id do usuário>}` (e token/sessão, se houver);
+      hoje o front usa `POST /usuarios` também para login — separar (ex.: `/login`) e ajustar `LOGIN_URL` em `Frontend/app.js`
+- [ ] `PATCH /usuarios/?id_usuario=<id>` — atualiza só os campos enviados (`nome`, `email`, `senha`)
+- [ ] `DELETE /usuarios/{id}` — corpo JSON `{"senha": "..."}` com a senha atual da conta
+- [ ] Retornar status HTTP corretos: 401/403 login inválido, 409 e-mail duplicado, 404 não encontrado (hoje as rotas devolvem 200 com `"status": "erro..."`)
+- [ ] Habilitar CORS (ou servir `Frontend/` pelo FastAPI com `StaticFiles`)
+- [ ] DELETE de matérias/bobicas/provas: responder erro quando `senha` != `DESTRUCTION_PASSWORD` (hoje responde 200 sem fazer nada)
+- [ ] Corrigir rotas DELETE duplicadas (`/{materia_nome}` e `/{bobica_id}` com o mesmo caminho: só a primeira é alcançada)
+- [ ] Provas: PUT/DELETE por matéria atingem várias provas; definir identificação por `id_prova` e listar provas com id
+- [ ] Dá commit
+
 ## Ritmo recomendado
 
 - Fazer uma tarefa principal por dia; se terminar cedo, revisar em vez de
