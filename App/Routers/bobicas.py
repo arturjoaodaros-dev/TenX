@@ -20,7 +20,7 @@ def listar_bobicas_por_nome(nome: str) -> dict:
 @router.post('/')
 def criar_bobica(bobica:bsc.Bobica) -> dict:
     try:
-        bdb.criar_bobica(bobica.nome, bobica.preco_medio)
+        bdb.criar_bobica(bobica)
         return{
             "status": "criado com sucesso",
             "nome": bobica.nome,

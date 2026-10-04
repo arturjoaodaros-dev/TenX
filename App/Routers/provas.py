@@ -31,7 +31,7 @@ def listar_provas_por_nome(nome_materia: str):
 def criar_prova(prova:psc.Prova) -> dict:
     
     try:
-        pdb.criar_prova(prova.nome_materia, prova.nome_bobica)
+        pdb.criar_prova(prova)
         return{
             "status": "criado com sucesso",
             "nome_materia": prova.nome_materia,

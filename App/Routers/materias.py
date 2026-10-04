@@ -22,7 +22,7 @@ def listar_materias_por_nome(nome: str) -> dict:
 def criar_materia(materia:msc.Materia) -> dict:
     try:
         return{
-            "status": mdb.criar_materia(materia.nome),
+            "status": mdb.criar_materia(materia),
             "nome": materia.nome,
         }
     except:
