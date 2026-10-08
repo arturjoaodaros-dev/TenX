@@ -13,38 +13,57 @@ conn = psycopg.connect(
     password=os.getenv("DB_PASSWORD"),
     autocommit=False
 )
-def Query(query, params=None, return_info:str="", autocommit:bool=True) -> list:
+
+def Query(
+    query: str,
+    params=None,
+    return_info: str = "",
+    autocommit: bool = True
+) -> list:
+    modo = (return_info or "").strip().lower()
+
+    if modo not in ("", "data", "columns", "table"):
+        raise ValueError(
+            "return_info deve ser '', 'data', 'columns' ou 'table'."
+        )
+
     try:
         with conn.cursor() as cursor:
-            cursor.execute(query, params)
+            cursor.execute(query, params)# type: ignore[arg-type]
 
             if cursor.description:
                 dados = cursor.fetchall()
-                colunas = [desc.name for desc in cursor.description]
+                colunas = [
+                    desc.name for desc in cursor.description
+                ]
 
-                if autocommit: conn.commit()
+                if modo == "data":
+                    resultado = dados
 
-                if return_info:
-                    if return_info.lower() == "table":
-                        return [pd.DataFrame(dados, columns=colunas)]
-                    elif return_info.lower() == "columns":
-                        return colunas
-                    elif return_info.lower() == "data":
-                        return dados
+                elif modo == "columns":
+                    resultado = colunas
+
+                elif modo == "table":
+                    resultado = [
+                        pd.DataFrame(dados, columns=colunas)
+                    ]
+
                 else:
-                    return [
-                        dados, 
-                        colunas, 
-                        pd.DataFrame(dados, columns=colunas)]
+                    resultado = [
+                        dados,
+                        colunas,
+                        pd.DataFrame(dados, columns=colunas)
+                    ]
 
-            resultado = cursor.statusmessage
+            else:
+                resultado = [cursor.statusmessage]
 
-            return [resultado]
-    except Exception as e:
-        print("Algo de de errado, nada foi alterado. ERR:", e)
+        # Confirma a transação uma única vez.
+        if autocommit:
+            conn.commit()
+
+        return resultado
+
+    except Exception:
         conn.rollback()
-        raise Exception(f"Algo de de errado, nada foi alterado. ERR:{e}")
-        
-
-    finally:
-        if autocommit: conn.commit()
+        raise

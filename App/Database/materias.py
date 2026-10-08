@@ -5,12 +5,13 @@ from App.Database.connector import Query
 from App.schemas import materias as msc
 
 # funções POST 
-def criar_materia(materia:msc.Materia) -> str:
+
+def criar_materia(nome, ) -> str:
     try:
         Query(
-            """
+        """
     INSERT INTO materias(materia_nome) VALUES(%s)
-            """, (materia.nome, ))
+            """, (nome, ))
         return "materia criada com sucesso"
     except Exception as e:
         raise Exception("Algo deu de errado na operação, ERR: ", e)

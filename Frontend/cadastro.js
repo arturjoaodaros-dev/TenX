@@ -1,8 +1,7 @@
 "use strict";
 
 // Endpoint de criação de usuário (rota /usuarios ainda incompleta no backend).
-// Se o frontend for servido por outra origem, ajuste a base aqui (ex.: "http://127.0.0.1:8000").
-const API_BASE = "";
+const API_BASE = "http://127.0.0.1:8000";
 const SIGNUP_URL = `${API_BASE}/usuarios`;
 const MIN_PASSWORD = 8;
 

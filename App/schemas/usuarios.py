@@ -11,3 +11,8 @@ class UsuarioResponse(BaseModel):
     usuario_id:int
     usuario_nome:str
     usuario_email:str
+
+
+class UsuarioLogin(BaseModel):
+    email: str
+    senha: str

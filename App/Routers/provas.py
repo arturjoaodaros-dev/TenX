@@ -8,7 +8,7 @@ router = APIRouter(
 )
 
 @router.get("/")
-def listar_todas_provas(id_materia:int=Query(ge=0, default=0), id_prova:int=Query(0, ge=0)):
+def listar_todas_provas(hash, id_materia:int=Query(ge=0, default=0), id_prova:int=Query(0, ge=0)):
     try:
         print("listar tudo usado", id_materia)
         if id_materia:
