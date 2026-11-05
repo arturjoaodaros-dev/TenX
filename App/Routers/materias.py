@@ -7,7 +7,7 @@ router = APIRouter(
 )
 
 @router.get("/")
-def listar_todas_materias(nome_materia:str=Query("", min_length=3)) -> dict:
+def listar_todas_materias(nome_materia:str=Query("")) -> dict:
     return {
         "nomes" : mdb.listar_materias(nome_materia)
     }
@@ -19,16 +19,16 @@ def listar_materias_por_nome(nome: str) -> dict:
     }
 
 @router.post('/')
-def criar_materia(materia:msc.Materia) -> dict:
+def criar_materia(nome) -> dict:
     try:
         return{
-            "status": mdb.criar_materia(materia.nome),
-            "nome": materia.nome,
+            "status": mdb.criar_materia(nome),
+            "nome": nome,
         }
     except:
         return{
             "status": "erro na criacao",
-            "nome": materia.nome,
+            "nome": nome,
         }
 
 @router.put('/')

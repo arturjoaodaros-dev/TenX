@@ -1,7 +1,6 @@
 "use strict";
 
-// Se o frontend for servido por outra origem, ajuste a base (ex.: "http://127.0.0.1:8000").
-const API_BASE = "";
+const API_BASE = "http://127.0.0.1:8000";
 
 const feedback = document.getElementById("feedback");
 const el = (id) => document.getElementById(id);

@@ -52,6 +52,12 @@ Comando:
 C:\Users\artur\Projects\TenX\.venv\Scripts\python.exe -m App.Database.provas
 
 
+App\Database\usuarios.py
+------------------------
+Comando:
+C:\Users\artur\Projects\TenX\.venv\Scripts\python.exe -m App.Database.usuarios
+
+
 App\schemas\__init__.py
 -----------------------
 Comando:

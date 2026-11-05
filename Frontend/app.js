@@ -1,8 +1,7 @@
 "use strict";
 
 // Endpoint de login (rota /usuarios ainda incompleta no backend).
-// Se o frontend for servido por outra origem, ajuste a base aqui (ex.: "http://127.0.0.1:8000").
-const API_BASE = "";
+const API_BASE = "http://127.0.0.1:8000";
 const LOGIN_URL = `${API_BASE}/usuarios`;
 
 const form = document.getElementById("login-form");
@@ -62,10 +61,10 @@ async function readBody(response) {
 }
 
 function errorMessage(response, body) {
-  if (response.status === 401 || response.status === 403) return "E-mail ou senha incorretos.";
   if (response.status === 404 || response.status === 405 || response.status === 501) {
     return "O login ainda não está disponível no servidor (rota /usuarios incompleta).";
   }
+  if (response.status === 401 || response.status === 403) return "E-mail ou senha incorretos.";
   if (body && typeof body.detail === "string") return body.detail;
   return "Não foi possível entrar. Tente novamente.";
 }

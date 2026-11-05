@@ -129,8 +129,8 @@ revisar o modelo do banco e corrigir relacionamentos, nomes e tipos.
 criar usuários e cadastro persistido no banco.
 
 - [X] Criar tabela de usuários
-- [ ] Criar endpoint de cadastro
-- [ ] Dá commit
+- [X] Criar endpoint de cadastro
+- [X] Dá commit
 
 ### DIA 16
 
@@ -184,9 +184,9 @@ adicionar paginação ou limite de resultados para a lista.
 
 criar status de rascunho e publicada.
 
-- [ ] Adicionar status no banco
-- [ ] Criar ações de publicação
-- [ ] Dá commit
+- [x] Adicionar status no banco
+- [x] Criar ações de publicação
+- [x] Dá commit
 
 ### DIA 23
 
@@ -342,73 +342,73 @@ Priorizar funcionamento, leitura e clareza; não buscar um visual complexo.
 
 criar as pastas do frontend e o layout HTML base.
 
-- [ ] Criar arquivos HTML, CSS e JavaScript
-- [ ] Criar navegação inicial
-- [ ] Dá commit
+- [X] Criar arquivos HTML, CSS e JavaScript
+- [X] Criar navegação inicial
+- [X] Dá commit
 
 ### DIA 42
 
 carregar o GrapesJS e criar uma área de edição funcional.
 
-- [ ] Instalar ou carregar o GrapesJS
-- [ ] Criar o canvas do editor
-- [ ] Dá commit
+- [X] Instalar ou carregar o GrapesJS
+- [X] Criar o canvas do editor
+- [X] Dá commit
 
 ### DIA 43
 
 adicionar blocos básicos: título, texto, imagem, botão e seção.
 
-- [ ] Criar blocos iniciais
-- [ ] Testar arrastar e editar
-- [ ] Dá commit
+- [X] Criar blocos iniciais
+- [X] Testar arrastar e editar
+- [X] Dá commit
 
 ### DIA 44
 
 criar as telas de login, cadastro e saída.
 
-- [ ] Criar formulários
-- [ ] Mostrar erros de acesso
-- [ ] Dá commit
+- [X] Criar formulários
+- [X] Mostrar erros de acesso
+- [X] Dá commit
 
 ### DIA 45
 
 criar a lista de matérias consumindo a API.
 
-- [ ] Criar cliente HTTP simples
-- [ ] Mostrar carregamento, vazio e erro
-- [ ] Dá commit
+- [X] Criar cliente HTTP simples
+- [X] Mostrar carregamento, vazio e erro
+- [X] Dá commit
 
 ### DIA 46
 
 criar o formulário de nova matéria e atualizar a lista após salvar.
 
-- [ ] Enviar dados para a API
-- [ ] Mostrar confirmação
-- [ ] Dá commit
+- [X] Enviar dados para a API
+- [X] Mostrar confirmação
+- [X] Dá commit
 
 ### DIA 47
 
 adicionar edição, remoção, duplicação e filtros na lista.
 
-- [ ] Adicionar ações de matéria
-- [ ] Pedir confirmação antes de remover
-- [ ] Dá commit
+- [X] Adicionar ações de matéria
+- [X] Pedir confirmação antes de remover
+- [X] Dá commit
 
 ### DIA 48
 
 conectar o GrapesJS ao backend para salvar HTML e CSS.
 
-- [ ] Salvar conteúdo da matéria
-- [ ] Mostrar estado de salvamento
-- [ ] Dá commit
+- [X] Salvar conteúdo da matéria
+- [X] Mostrar estado de salvamento
+- [X] Dá commit
 
 ### DIA 49
 
 carregar conteúdo existente no GrapesJS e testar reabertura da matéria.
 
-- [ ] Carregar HTML e CSS
-- [ ] Testar fechar, abrir e salvar novamente
-- [ ] Dá commit
+- [X] Carregar HTML e CSS
+- [X] Testar fechar, abrir e salvar novamente
+- [X] Dá commit
 
 ### DIA 50
 
